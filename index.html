@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aman Kannaujiya | Software Engineer & ML Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Epilogue:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+
+:root {
+  --ink:#111010;
+  --ink-mid:#3d3935;
+  --ink-light:#746f69;
+  --ink-faint:#b9b3ac;
+  --paper:#ffffff;
+  --paper-2:#eaeaea;
+  --paper-3:#ffffff;
+  --rule:#e0dbd4;
+  --accent:#1a4fa0;
+  --accent-soft:#d3e0f5;
+  --accent-warm:#eef3fc;
+}
+
+body {
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Epilogue',sans-serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* NAV */
+header {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  background:rgb(255, 255, 255);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);
+}
+nav {
+  max-width:1200px; margin:auto; height:72px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 3rem;
+}
+.logo {
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem; font-weight:700; color:var(--ink); text-decoration:none;
+}
+.logo em { color:var(--accent); font-style:italic; }
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a {
+  text-decoration:none; font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-light); font-weight:500; transition:.25s;
+}
+.nav-links a:hover { color:var(--ink); }
+.nav-btn {
+  padding:.8rem 1.4rem; background:var(--ink); color:#fff;
+  text-decoration:none; border-radius:4px; font-size:.78rem;
+  font-weight:600; letter-spacing:.06em; transition:.25s;
+}
+.nav-btn:hover { background:var(--accent); }
+
+/* HERO */
+.hero {
+  min-height:100vh; max-width:1200px; margin:auto;
+  padding:8rem 3rem 4rem;
+  display:grid; grid-template-columns:1.1fr .9fr;
+  align-items:center; gap:4rem;
+}
+.hero-eyebrow { display:flex; align-items:center; gap:.8rem; margin-bottom:2rem; }
+.dot { width:8px; height:8px; background:var(--accent); border-radius:50%; }
+.eyebrow-text {
+  font-family:'JetBrains Mono',monospace; font-size:.72rem;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink-light);
+}
+.hero-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3.3rem,6vw,5.7rem);
+  line-height:1; letter-spacing:-0.04em; margin-bottom:1.5rem;
+}
+.hero-title span { font-style:italic; font-weight:400; color:var(--accent); }
+.hero-description {
+  max-width:540px; font-size:1.06rem; color:var(--ink-mid);
+  font-weight:300; margin-bottom:2.3rem;
+}
+.hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; }
+.btn-primary {
+  padding:.95rem 1.8rem; background:var(--ink); color:#fff;
+  text-decoration:none; font-size:.82rem; letter-spacing:.06em;
+  font-weight:600; border-radius:4px; transition:.25s;
+}
+.btn-primary:hover { background:var(--accent); }
+.btn-secondary {
+  padding:.95rem 0; text-decoration:none; color:var(--ink-mid);
+  font-size:.82rem; border-bottom:1px solid var(--ink-light); transition:.25s;
+}
+.btn-secondary:hover { color:var(--ink); border-color:var(--ink); }
+
+/* HERO RIGHT */
+.hero-right { display:flex; flex-direction:column; gap:1.2rem; }
+.stat-card {
+  background:var(--paper-2); border:1px solid var(--rule);
+  padding:1.5rem 1.7rem; border-radius:8px;
+  display:flex; align-items:center; justify-content:space-between; transition:.3s;
+}
+.stat-card:hover { transform:translateY(-3px); border-color:var(--ink-light); }
+.stat-card.accent { border-left:4px solid var(--accent); }
+.stat-value { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; }
+.stat-text { font-size:.82rem; max-width:170px; text-align:right; color:var(--ink-light); }
+
+/* SECTIONS */
+.section { border-top:1px solid var(--rule); }
+.section-inner { max-width:1200px; margin:auto; padding:5rem 3rem; }
+.section-header { display:grid; grid-template-columns:200px 1fr; gap:3rem; margin-bottom:3rem; }
+.section-number {
+  font-family:'JetBrains Mono',monospace; font-size:.7rem;
+  letter-spacing:.1em; color:var(--ink-faint); padding-top:.4rem;
+}
+.section-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.9rem,4vw,2.8rem); line-height:1.1; letter-spacing:-0.03em;
+}
+.section-title em { font-style:italic; font-weight:400; color:var(--accent); }
+
+/* EXPERIENCE */
+.exp-item {
+  display:grid; grid-template-columns:200px 1fr;
+  gap:3rem; padding:2.5rem 0; border-top:1px solid var(--rule);
+}
+.exp-item:last-child { border-bottom:1px solid var(--rule); }
+.exp-date {
+  font-family:'JetBrains Mono',monospace; font-size:.72rem;
+  color:var(--ink-light); margin-bottom:.8rem;
+}
+.badge {
+  display:inline-block; padding:.25rem .7rem; font-size:.64rem;
+  font-weight:700; letter-spacing:.1em; text-transform:uppercase; border-radius:3px;
+}
+.badge-onsite { background:var(--accent-soft); color:#1a4fa0; }
+.badge-remote { background:var(--paper-3); color:var(--ink-mid); }
+.exp-role { font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:.25rem; }
+.exp-company { font-size:.9rem; color:var(--accent); font-weight:500; margin-bottom:1rem; }
+.exp-list { list-style:none; display:flex; flex-direction:column; gap:.7rem; }
+.exp-list li {
+  position:relative; padding-left:1.3rem;
+  font-size:.92rem; color:var(--ink-mid); font-weight:300;
+}
+.exp-list li::before { content:"—"; position:absolute; left:0; color:var(--ink-light); }
+
+/* PROJECTS */
+.projects { background:var(--paper-2); }
+.project-grid {
+  display:grid; grid-template-columns:1fr 1fr 1fr;
+  gap:1.5px; background:var(--rule);
+  border:1px solid var(--rule); border-radius:10px; overflow:hidden;
+}
+.project-card { background:var(--paper); padding:2.5rem; transition:.3s; }
+.project-card:hover { background:var(--accent-warm); }
+.project-label {
+  font-family:'JetBrains Mono',monospace; font-size:.68rem;
+  color:var(--ink-faint); margin-bottom:1rem; letter-spacing:.08em;
+}
+.project-title { font-family:'Playfair Display',serif; font-size:1.45rem; margin-bottom:.8rem; }
+.project-desc { font-size:.9rem; font-weight:300; color:var(--ink-mid); margin-bottom:1.4rem; }
+.tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.5rem; }
+.tag {
+  padding:.3rem .7rem; border:1px solid var(--rule); border-radius:50px;
+  font-size:.7rem; font-family:'JetBrains Mono',monospace;
+  background:var(--paper-2); color:var(--ink-light);
+}
+
+/* SKILLS */
+.skills-grid { display:grid; grid-template-columns:200px 1fr; }
+.skill-label {
+  padding:1.5rem 0; border-top:1px solid var(--rule);
+  font-family:'JetBrains Mono',monospace; font-size:.72rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-light);
+}
+.skill-items {
+  padding:1.2rem 0 1.2rem 2rem; border-top:1px solid var(--rule);
+  display:flex; flex-wrap:wrap; gap:.7rem;
+}
+.skill-pill {
+  padding:.45rem 1rem; border-radius:999px; border:1px solid var(--rule);
+  background:var(--paper-2); font-size:.82rem; font-weight:500; transition:.25s;
+}
+.skill-pill:hover { background:var(--ink); color:#fff; }
+
+/* EDUCATION */
+.education { background:var(--paper-2); }
+.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+.edu-card {
+  background:var(--paper); border:1px solid var(--rule);
+  border-radius:8px; padding:2rem; transition:.25s;
+}
+.edu-card:hover { border-color:var(--ink-light); }
+.edu-year {
+  font-family:'JetBrains Mono',monospace; font-size:.68rem;
+  letter-spacing:.08em; color:var(--ink-faint); margin-bottom:.7rem;
+}
+.edu-degree { font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:.35rem; }
+.edu-school { font-size:.88rem; color:var(--ink-mid); margin-bottom:1rem; font-weight:300; }
+.edu-score {
+  display:inline-block; padding:.3rem .8rem;
+  background:var(--accent-warm); border:1px solid var(--accent-soft);
+  border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:.72rem;
+  color:var(--accent);
+}
+
+/* CP */
+.cp-highlight {
+  margin-top:3rem; background:var(--ink); border-radius:10px;
+  padding:2.5rem 3rem; display:flex; align-items:center;
+  justify-content:space-between; flex-wrap:wrap; gap:2rem;
+}
+.cp-left {}
+.cp-num {
+  font-family:'Playfair Display',serif; font-size:4rem;
+  font-weight:700; color:#fff; line-height:1; letter-spacing:-2px;
+}
+.cp-sublabel {
+  font-family:'JetBrains Mono',monospace; font-size:.68rem;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(255,255,255,.4); margin-top:.4rem;
+}
+.cp-right { max-width:420px; }
+.cp-right p { font-size:.92rem; color:rgba(255,255,255,.6); font-weight:300; line-height:1.7; }
+.cp-tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1rem; }
+.cp-tag {
+  padding:.3rem .8rem; border:1px solid rgba(255,255,255,.15); border-radius:50px;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; color:rgba(255,255,255,.5);
+}
+
+/* CONTACT */
+.contact { background:var(--ink); }
+.contact .section-title { color:#fff; }
+.contact-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:rgba(255,255,255,.1);
+  border-radius:10px; overflow:hidden; margin-top:1.5rem;
+}
+.contact-card {
+  background:rgba(255,255,255,.04); padding:1.8rem;
+  text-decoration:none; transition:.25s;
+}
+.contact-card:hover { background:rgba(255,255,255,.08); }
+.contact-label {
+  font-family:'JetBrains Mono',monospace; font-size:.65rem;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:rgba(255,255,255,.4); margin-bottom:.6rem;
+}
+.contact-value { color:#fff; font-size:.88rem; font-weight:500; }
+
+/* FOOTER */
+footer {
+  background:var(--ink); padding:1.5rem 3rem;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.footer-inner {
+  max-width:1200px; margin:auto;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.footer-name { font-family:'Playfair Display',serif; font-style:italic; color:rgba(255,255,255,.45); }
+.footer-copy { font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.08em; color:rgba(255,255,255,.25); }
+
+/* ANIMATION */
+.fade { opacity:0; transform:translateY(20px); transition:.7s ease; }
+.fade.show { opacity:1; transform:none; }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav { padding:0 1.5rem; }
+  .nav-links, .nav-btn { display:none; }
+  .hero { grid-template-columns:1fr; padding:7rem 1.5rem 3rem; }
+  .hero-right { margin-top:1rem; }
+  .section-inner { padding:4rem 1.5rem; }
+  .section-header, .exp-item, .skills-grid { grid-template-columns:1fr; gap:1rem; }
+  .skill-items { padding-left:0; }
+  .project-grid, .edu-grid, .contact-grid { grid-template-columns:1fr; }
+  footer { padding:1.5rem; }
+  .cp-highlight { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#" class="logo">Aman <em>K.</em></a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+    </ul>
+    <a href="mailto:aman0945ak@gmail.com" class="nav-btn">Hire Me</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      <span class="eyebrow-text">B.Tech IT · KNIT Sultanpur · 2026</span>
+    </div>
+    <h1 class="hero-title">
+      Aman<br>
+      <span>Kannaujiya</span>
+    </h1>
+    <p class="hero-description">
+      Software Engineer and ML Developer building scalable backend APIs, real-time data systems, and intelligent applications. Passionate about clean architecture and data-driven solutions.
+    </p>
+    <div class="hero-buttons">
+      <a href="mailto:aman0945ak@gmail.com" class="btn-primary">Let's Connect</a>
+      <a href="https://github.com/" target="_blank" class="btn-secondary">Explore GitHub →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-card accent fade">
+      <div class="stat-value">8.1</div>
+      <div class="stat-text">Current CGPA in Information Technology</div>
+    </div>
+    <div class="stat-card fade">
+      <div class="stat-value">300+</div>
+      <div class="stat-text">DSA problems solved on LeetCode & GFG</div>
+    </div>
+    <div class="stat-card fade">
+      <div class="stat-value">2×</div>
+      <div class="stat-text">Professional internships completed</div>
+    </div>
+    <div class="stat-card fade">
+      <div class="stat-value">30%</div>
+      <div class="stat-text">Manual workflow reduction delivered at Hindalco</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-inner">
+    <div class="section-header fade">
+      <div class="section-number">01 / EXPERIENCE</div>
+      <h2 class="section-title">Building solutions with <em>real impact</em></h2>
+    </div>
+
+    <div class="exp-item fade">
+      <div>
+        <div class="exp-date">Jun 2025 — Jul 2025</div>
+        <span class="badge badge-onsite">On Site</span>
+      </div>
+      <div>
+        <div class="exp-role">Software Development Intern</div>
+        <div class="exp-company">Hindalco Industries Limited — Aditya Birla Group</div>
+        <ul class="exp-list">
+          <li>Developed and maintained a responsive asset management interface supporting workflows across 25+ departments.</li>
+          <li>Automated Excel-to-database data pipelines using Python, reducing manual efforts by 30%.</li>
+          <li>Collaborated with engineers to design scalable data-driven solutions and reporting workflows.</li>
+          <li>Worked with backend integration and structured datasets to improve system efficiency and reporting accuracy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade">
+      <div>
+        <div class="exp-date">Aug 2024 — Oct 2024</div>
+        <span class="badge badge-remote">Remote</span>
+      </div>
+      <div>
+        <div class="exp-role">Cyber Security Intern</div>
+        <div class="exp-company">C-DAC, Noida</div>
+        <ul class="exp-list">
+          <li>Performed vulnerability assessment on 15+ systems using Nmap and Wireshark, identifying security risks in network layers.</li>
+          <li>Analyzed network traffic patterns and logs to detect anomalies, improving threat detection accuracy by 25% in test environments.</li>
+          <li>Documented 10+ security issues and suggested fixes, supporting secure data handling practices.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section projects" id="projects">
+  <div class="section-inner">
+    <div class="section-header fade">
+      <div class="section-number">02 / PROJECTS</div>
+      <h2 class="section-title">Selected engineering <em>work</em></h2>
+    </div>
+
+    <div class="project-grid fade">
+      <div class="project-card">
+        <div class="project-label">PROJECT 01</div>
+        <div class="project-title">ML Model API Service</div>
+        <div class="project-desc">RESTful APIs built with FastAPI for machine learning model inference. Modular architecture with asynchronous processing, request validation, and exception handling for scalable predictions.</div>
+        <div class="tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Python</span>
+          <span class="tag">REST API</span>
+          <span class="tag">Async</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-label">PROJECT 02</div>
+        <div class="project-title">Job Board / E-commerce Platform</div>
+        <div class="project-desc">Full-stack application using Django and Django REST Framework with REST APIs for authentication, listings, and CRUD operations. React frontend connected via dynamic client-server communication.</div>
+        <div class="tags">
+          <span class="tag">Django</span>
+          <span class="tag">DRF</span>
+          <span class="tag">React</span>
+          <span class="tag">SQL</span>
+          <span class="tag">PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-label">PROJECT 03</div>
+        <div class="project-title">Real-Time Monitoring Dashboard</div>
+        <div class="project-desc">Live monitoring dashboard using FastAPI and WebSockets for real-time data streaming. Asynchronous backend services handle concurrent client connections with event-driven APIs.</div>
+        <div class="tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">WebSockets</span>
+          <span class="tag">React</span>
+          <span class="tag">Async</span>
+          <span class="tag">Real-Time</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-inner">
+    <div class="section-header fade">
+      <div class="section-number">03 / SKILLS</div>
+      <h2 class="section-title">Technical <em>expertise</em></h2>
+    </div>
+
+    <div class="skills-grid fade">
+      <div class="skill-label">Languages</div>
+      <div class="skill-items">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">Java</span>
+      </div>
+
+      <div class="skill-label">Backend</div>
+      <div class="skill-items">
+        <span class="skill-pill">FastAPI</span>
+        <span class="skill-pill">Django</span>
+        <span class="skill-pill">Django REST Framework</span>
+      </div>
+
+      <div class="skill-label">ML & AI</div>
+      <div class="skill-items">
+        <span class="skill-pill">scikit-learn</span>
+        <span class="skill-pill">TensorFlow</span>
+        <span class="skill-pill">Keras</span>
+        <span class="skill-pill">XGBoost</span>
+        <span class="skill-pill">NLP</span>
+        <span class="skill-pill">Pandas</span>
+        <span class="skill-pill">NumPy</span>
+        <span class="skill-pill">Matplotlib</span>
+        <span class="skill-pill">Seaborn</span>
+      </div>
+
+      <div class="skill-label">Databases</div>
+      <div class="skill-items">
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">Redis</span>
+        <span class="skill-pill">SQLAlchemy</span>
+        <span class="skill-pill">Alembic</span>
+      </div>
+
+      <div class="skill-label">DevOps & Tools</div>
+      <div class="skill-items">
+        <span class="skill-pill">Docker</span>
+        <span class="skill-pill">Docker Compose</span>
+        <span class="skill-pill">GitHub Actions</span>
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">VS Code</span>
+        <span class="skill-pill">Google Colab</span>
+      </div>
+
+      <div class="skill-label">Data Analysis</div>
+      <div class="skill-items">
+        <span class="skill-pill">Feature Engineering</span>
+        <span class="skill-pill">EDA</span>
+        <span class="skill-pill">Cross Validation</span>
+        <span class="skill-pill">Hyperparameter Tuning</span>
+        <span class="skill-pill">Model Evaluation</span>
+      </div>
+    </div>
+
+    <div class="cp-highlight fade">
+      <div class="cp-left">
+        <div class="cp-num">300+</div>
+        <div class="cp-sublabel">Problems Solved</div>
+      </div>
+      <div class="cp-right">
+        <p>Active competitive programmer on LeetCode and GeeksforGeeks with a strong DSA foundation. Core topics include arrays, strings, hashing, binary search, and sorting techniques.</p>
+        <div class="cp-tags">
+          <span class="cp-tag">LeetCode</span>
+          <span class="cp-tag">GeeksforGeeks</span>
+          <span class="cp-tag">Arrays</span>
+          <span class="cp-tag">Hashing</span>
+          <span class="cp-tag">Binary Search</span>
+          <span class="cp-tag">Sorting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section education" id="education">
+  <div class="section-inner">
+    <div class="section-header fade">
+      <div class="section-number">04 / EDUCATION</div>
+      <h2 class="section-title">Academic <em>journey</em></h2>
+    </div>
+
+    <div class="edu-grid fade">
+      <div class="edu-card">
+        <div class="edu-year">2022 — 2026</div>
+        <div class="edu-degree">B.Tech — Information Technology</div>
+        <div class="edu-school">Kamla Nehru Institute of Technology, Sultanpur</div>
+        <div class="edu-score">CGPA 8.1 / 10</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2021 — 2022</div>
+        <div class="edu-degree">Intermediate — PCM</div>
+        <div class="edu-school">Aditya Birla Intermediate College, Sonbhadra</div>
+        <div class="edu-score">81%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact">
+  <div class="section-inner">
+    <div class="section-header fade">
+      <div class="section-number" style="color:rgba(255,255,255,.3)">05 / CONTACT</div>
+      <h2 class="section-title">Let's create something <em>meaningful</em></h2>
+    </div>
+
+    <div class="contact-grid fade">
+      <a href="mailto:aman0945ak@gmail.com" class="contact-card">
+        <div class="contact-label">Email</div>
+        <div class="contact-value">aman0945ak@gmail.com</div>
+      </a>
+      <a href="tel:+919795764993" class="contact-card">
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+91 97957 64993</div>
+      </a>
+      <a href="https://linkedin.com/" target="_blank" class="contact-card">
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">linkedin.com/in/aman</div>
+      </a>
+      <a href="https://github.com/" target="_blank" class="contact-card">
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">github.com/aman</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">Aman Kannaujiya</div>
+    <div class="footer-copy">Sonbhadra, Uttar Pradesh, India — 2026</div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) entry.target.classList.add("show");
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll(".fade").forEach((el) => observer.observe(el));
+</script>
+</body>
+</html>
